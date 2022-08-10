@@ -3,16 +3,18 @@ import React from "react";
 
 
 const DayList = function(props) {
-  const allDayList = props.days.map(day => {
-    return <DayListItem
-              key={props.day.id} 
-              name={props.day.name} 
-              spots={props.day.spots} 
-              selected={props.day.name === props.day}
-              setDay={props.setDay}>{props.day} 
-           </DayListItem>
+  const allDayList = props.days.map(item => {
+    
+      return <DayListItem
+              key={item.id} 
+              name={item.name} 
+              spots={item.spots} 
+              selected={item.name === props.day}
+              setDay={props.setDay}
+             />
+   
   })
-  
+
    return (
     <ul>
       {allDayList}
