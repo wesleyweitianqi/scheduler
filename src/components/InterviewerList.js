@@ -3,20 +3,17 @@ import React, { useState } from "react";
 import "./InterviewerList.scss";
 import InterviewerListItem from "./InterviewerListItem";
 
-const InterviewerList = function(props) {
-  console.log(props)
+const InterviewerList = function(props) { 
   const interviewerArray = props.interviewers;
-  const allInterviewerList = interviewerArray.map(item => {
+  const allInterviewerList = interviewerArray.map(interviewer => {
     return  <InterviewerListItem 
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              avatar={item.avatar}
-              selected ={item.id === props.interviewer}
-              setInterviewer={props.setInterviewer}
+              key={interviewer.id}
+              name={interviewer.name}
+              avatar={interviewer.avatar}
+              selected ={interviewer.id === props.value}
+              setInterviewer={() =>props.onChange(interviewer.id)}
             /> 
   })
-  // console.log(allInterviewerList)
   
   return (
     <section className="interviewers">
