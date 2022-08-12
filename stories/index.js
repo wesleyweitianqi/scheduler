@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "index.scss";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -148,8 +148,13 @@ storiesOf("Button", module)
         .add('Appointment with time', () => <Appointment time="12pm" />)
         .add('Header', () => <Header time="12pm" />)
         .add('Empty', ()=> <Empty onAdd={action('onAdd')} />)
-        .add('Show', ()=> <Show student="Lydia Miller-Jones" interviewers={interviewers} onEdit={action("onEdit")} onDelete={action('onDelete')} />)
-        .add('Confirm', () => <Confirm onConfirm={action('onConfirm')} onCancel={action('onCancel')}/>)
+        .add('Show', ()=> <Show student="Lydia Miller-Jones"
+                                interviewer = {{id: 3, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png"}}
+                                           
+                          />)
+        .add('Confirm', () => <Confirm onConfirm={action('onConfirm')} 
+                                        onCancel={action('onCancel')}
+                              />)
         .add('Status', () => <Status />)
         .add('Error', ()=> <Error onClose={action('onClose')} />)
         .add('Edit', () => <Form student="Wesley"   
@@ -164,3 +169,25 @@ storiesOf("Button", module)
                                onSave={action('onSave')}
                                onCancel={action('onCancel')}
                                 />)
+        .add('Appointment Empty', ()=> 
+          <Fragment>
+            <Appointment id={1} time="4pm" />
+            <Appointment time="5pm" />
+          </Fragment>
+        )
+        .add("Appointment Booked", () => 
+          <Fragment>
+            <Appointment
+              id={1}
+              time="4pm"
+              interview={{ student: "Lydia Miller-Jones", 
+                          interviewer 
+                        }}
+            />
+            <Appointment time="5pm" />
+          </Fragment>
+        )
+
+       
+
+        
