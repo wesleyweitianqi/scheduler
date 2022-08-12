@@ -37,11 +37,11 @@ storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
   })
-  .add("Unselected", () => <DayListItem name="Monday" spots={5} />) 
-  .add("Selected", () => <DayListItem name="Monday" spots={5} selected />) 
-  .add("Full", () => <DayListItem name="Monday" spots={0} />)
+  .add("Unselected", () => <DayListItem value="Monday" spots={5} />) 
+  .add("Selected", () => <DayListItem value="Monday" spots={5} selected />) 
+  .add("Full", () => <DayListItem value="Monday" spots={0} />)
   .add("Clickable", () => (
-    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> 
+    <DayListItem value="Tuesday" setDay={action("setDay")} spots={5} /> 
   ));
 
   const days = [
@@ -152,14 +152,14 @@ storiesOf("Button", module)
         .add('Confirm', () => <Confirm onConfirm={action('onConfirm')} onCancel={action('onCancel')}/>)
         .add('Status', () => <Status />)
         .add('Error', ()=> <Error onClose={action('onClose')} />)
-        .add('Edit', () => <Form student="Wesley"          
-                                 interviewer={3} 
-                                 key={3}
+        .add('Edit', () => <Form student="Wesley"   
+                                        
+                                 interviewer={3}                                  
                                  interviewers={interviewers} 
                                  onSave={action('onSave')}
                                  onCancel={action('onCancel')}/>)
         .add('Create', ()=> <Form 
-                            
+                               
                                interviewers={interviewers} 
                                onSave={action('onSave')}
                                onCancel={action('onCancel')}

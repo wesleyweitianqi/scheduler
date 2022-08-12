@@ -3,9 +3,8 @@ import React from "react";
 
 
 const DayList = function(props) {
-  console.log(props)
   const allDayList = props.days.map(item => {
-    
+      console.log(item.name)
       return <DayListItem
               key={item.id} 
               value={item.name} 

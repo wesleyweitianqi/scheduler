@@ -8,7 +8,7 @@ const Form = (props) => {
   const [interviewer, setInterviewer] = useState(props.interviewer || null)
   const reset = () => {
     setStudent("")
-    setInterviewer(null)
+    setInterviewer('null')
     return
   }
   const cancel =() => {
@@ -19,7 +19,7 @@ const Form = (props) => {
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={e => e.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
@@ -32,7 +32,8 @@ const Form = (props) => {
       <InterviewerList 
         interviewers={props.interviewers}
         setInterviewer={setInterviewer}
-        selected ={props.interviewer === "3"}
+        // value={props.interviewer}
+        value={interviewer}
       />
       </section>
       <section className="appointment__card-right">
