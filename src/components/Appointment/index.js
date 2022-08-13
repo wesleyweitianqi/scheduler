@@ -6,7 +6,6 @@ import Show from "./Show";
 
 
 const Appointment = function(props) {
-  console.log(props.interview)
   return (
     <article className="appointment">
       <Header time={props.time} />

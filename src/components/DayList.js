@@ -4,7 +4,6 @@ import React from "react";
 
 const DayList = function(props) {
   const allDayList = props.days.map(item => {
-      console.log(item.name)
       return <DayListItem
               key={item.id} 
               value={item.name} 
@@ -14,7 +13,6 @@ const DayList = function(props) {
              />
    
   })
-
    return (
     <ul>
       {allDayList}
