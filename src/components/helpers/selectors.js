@@ -23,11 +23,9 @@ const getInterviewersForDay = (state, day) => {
   const expectedDay =state.days.filter(item => item.name === day)
   const expectinterviewers = [];
   for (let i of expectedDay) {
-    console.log(i)
     expectinterviewers.push(...i.interviewers)
   }
   const result = expectinterviewers.map(item => state.interviewers[item.toString()])
-  console.log("result", result)
   return [...result];
 };
   

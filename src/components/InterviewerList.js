@@ -4,8 +4,8 @@ import "./InterviewerList.scss";
 import InterviewerListItem from "./InterviewerListItem";
 
 const InterviewerList = function(props) { 
+ 
   const interviewerArray = Object.values(props.interviewers);
-  console.log("*******",interviewerArray)
   const allInterviewerList = interviewerArray.map(interviewer => {
     return  <InterviewerListItem 
               key={interviewer.id}
