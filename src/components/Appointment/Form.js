@@ -27,18 +27,20 @@ const Form = (props) => {
             placeholder="Enter Student Name"
             value={student}
             onChange={e =>setStudent(e.target.value)}
+            
           />
         </form>
       <InterviewerList 
         interviewers={props.interviewers}
         setInterviewer={setInterviewer}
-        // value={props.interviewer}
-        value={interviewer}
+        value={props.interviewer}
+        
+        
       />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={()=>cancel()}>Cancel</Button>
+          <Button danger onClick={() => props.onCancel()}>Cancel</Button>
           <Button confirm onClick={props.onSave}>Save</Button>
         </section>
       </section>
