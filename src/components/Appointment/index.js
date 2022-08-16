@@ -49,7 +49,7 @@ const Appointment = function(props) {
       transition(ERROR_DELETE, true)
     }) 
   }
-  console.log(mode);
+
   const onCancel =() => {
     transition(SHOW)
   };
