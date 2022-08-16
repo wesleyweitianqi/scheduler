@@ -17,9 +17,6 @@ const Form = (props) => {
     return
   }
 
-  // const placeholder = props.interview ? props.interview.student : "" ;
-  // const existInterviewer = props.interview ? (props.interview.interviewer.id) : interviewer ;
-  // console.log(existInterviewer)
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
