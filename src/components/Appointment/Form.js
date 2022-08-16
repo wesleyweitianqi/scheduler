@@ -4,8 +4,9 @@ import InterviewerList from "../InterviewerList";
 import { useState } from "react";
 
 const Form = (props) => {
-  const [student, setStudent] =useState(props.student || "");
-  const [interviewer, setInterviewer] = useState(props.interviewer || null)
+  const [student, setStudent] =useState(props.interview ? props.interview.student : "");
+  const [interviewer, setInterviewer] = useState(props.interview ?props.interview.interviewer.id : null)
+ 
   const reset = () => {
     setStudent("")
     setInterviewer('null')
@@ -16,6 +17,9 @@ const Form = (props) => {
     return
   }
 
+  // const placeholder = props.interview ? props.interview.student : "" ;
+  // const existInterviewer = props.interview ? (props.interview.interviewer.id) : interviewer ;
+  // console.log(existInterviewer)
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -24,7 +28,7 @@ const Form = (props) => {
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
-            placeholder="Enter Student Name"
+            placeholder={student}
             value={student}
             onChange={e =>setStudent(e.target.value)}
             
