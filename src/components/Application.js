@@ -57,9 +57,6 @@ export default function Application() {
       .then(() => {
         setState({ ...state, appointments });
       })
-      .catch((error) => {
-        console.error("There was an error!", error);
-      });
   };
 
    const cancelInterview = (id) => {
@@ -78,7 +75,7 @@ export default function Application() {
     .then(() => {
       setState({...state, appointments });
     })
-    .catch(err => console.error(err))
+    // .catch(err => console.error(err))
   }
 
  

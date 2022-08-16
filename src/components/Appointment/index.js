@@ -7,6 +7,7 @@ import useVisualMode from "../../hooks/useVisualMode";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 
 const EMPTY = 'EMPTY';
 const SHOW = 'SHOW';
@@ -15,6 +16,8 @@ const SAVING = 'SAVING';
 const DELETE = 'DELETE';
 const CONFIRM = 'CONFIRM';
 const EDIT = 'EDIT';
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 const Appointment = function(props) {
   
   const {bookInterview, id, cancelInterview, interview} = props;
@@ -29,7 +32,9 @@ const Appointment = function(props) {
     .then(() => {
       transition(SHOW);
     })
-    .catch(err => console.error(err))
+    .catch(err => {
+      transition(ERROR_SAVE, true)
+    })
   };
 
   const onDelete = () => {
@@ -37,12 +42,14 @@ const Appointment = function(props) {
   };
   
   const onConfirm = () => {
-    transition(DELETE)
+    transition(DELETE, true)
     cancelInterview(props.id)
     .then(() => transition(EMPTY))
-    .catch(err => console.error(err)) 
+    .catch(err => {
+      transition(ERROR_DELETE, true)
+    }) 
   }
-
+  console.log(mode);
   const onCancel =() => {
     transition(SHOW)
   };
@@ -50,6 +57,10 @@ const Appointment = function(props) {
   const onEdit =() => {
     transition(EDIT)
   };
+
+  const onClose = () => {
+    back();
+  }
 
   return (
     <article className="appointment">
@@ -71,7 +82,7 @@ const Appointment = function(props) {
       />} 
       {mode === SAVING && <Status value="Saving" />} 
       {mode === DELETE && <Status value="Deleting" />}
-      {mode === CONFIRM && <Confirm onCancel={onCancel} onConfirm={onConfirm}/>}
+      {mode === CONFIRM && <Confirm onCancel={back} onConfirm={onConfirm}/>}
       {mode === EDIT && <Form 
         name={props.name}
         value={props.value}
@@ -80,6 +91,8 @@ const Appointment = function(props) {
         onSave={save}
         interview={interview}
       />}
+      {mode === ERROR_DELETE && <Error onClose={onClose}/>}
+      {mode === ERROR_SAVE && <Error onClose={onClose}/>}
     </article>
   )
 }
