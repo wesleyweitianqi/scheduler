@@ -5,9 +5,7 @@ import InterviewerListItem from "./InterviewerListItem";
 import PropTypes from "prop-types";
 
 const InterviewerList = function(props) { 
-  console.log("interviewlist", props)
   const interviewerArray = props.interviewers;
-  console.log("^^^^^^^^^^^^^",interviewerArray)
   const allInterviewerList = interviewerArray.map(interviewer => {
     return  <InterviewerListItem 
               key={interviewer.id}

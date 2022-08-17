@@ -4,8 +4,8 @@ import InterviewerList from "../InterviewerList";
 import { useState } from "react";
 
 const Form = (props) => {
-  console.log(props.interviewer)
-  const {interviewers} = props
+  
+  
   const [student, setStudent] =useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null)
   const [error, setError] = useState("");
@@ -27,6 +27,7 @@ const Form = (props) => {
       setError("Please select an interviewer");
       return;
     }
+    setError("");
     props.onSave(student, interviewer);
   }
 
@@ -58,7 +59,9 @@ const Form = (props) => {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={() => props.onCancel()}>Cancel</Button>
+          <Button danger onClick={() => {
+            props.onCancel()
+          }}>Cancel</Button>
           <Button confirm onClick={()=>{
             validate()
           }}>Save</Button>

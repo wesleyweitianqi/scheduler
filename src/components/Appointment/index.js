@@ -18,8 +18,8 @@ const CONFIRM = 'CONFIRM';
 const EDIT = 'EDIT';
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
+
 const Appointment = function(props) {
-  console.log("form props" , props)
   const {bookInterview, id, cancelInterview, interview} = props;
   const {mode, transition, back} = useVisualMode(props.interview ? SHOW : EMPTY);
   const save = (name, interviewer) => {
