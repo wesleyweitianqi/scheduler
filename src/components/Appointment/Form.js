@@ -4,9 +4,11 @@ import InterviewerList from "../InterviewerList";
 import { useState } from "react";
 
 const Form = (props) => {
-  const [student, setStudent] =useState(props.interview ? props.interview.student : "");
-  const [interviewer, setInterviewer] = useState(props.interview ?props.interview.interviewer.id : null)
- 
+  console.log(props.interviewer)
+  const {interviewers} = props
+  const [student, setStudent] =useState(props.student || "");
+  const [interviewer, setInterviewer] = useState(props.interviewer || null)
+  const [error, setError] = useState("");
   const reset = () => {
     setStudent("")
     setInterviewer('null')
@@ -15,6 +17,17 @@ const Form = (props) => {
   const cancel =() => {
     reset();
     return
+  }
+  function validate() {
+    if (student === "") {
+      setError('Student name cannot be blank');
+      return;
+    }  
+    if (interviewer === null) {
+      setError("Please select an interviewer");
+      return;
+    }
+    props.onSave(student, interviewer);
   }
 
   return (
@@ -25,16 +38,20 @@ const Form = (props) => {
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
-            placeholder={student}
+            placeholder={student? student : "Enter Student Name"}
             value={student}
+            data-testid="student-name-input"
             onChange={e =>setStudent(e.target.value)}
-            
           />
         </form>
+      { error !== "" && <section className="appointment__validation">{error}</section> }
       <InterviewerList 
         interviewers={props.interviewers}
         setInterviewer={setInterviewer}
         value={interviewer}
+        interviewer={props.interviewer}
+        
+        
         
         
       />
@@ -42,7 +59,9 @@ const Form = (props) => {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={() => props.onCancel()}>Cancel</Button>
-          <Button confirm onClick={()=>props.onSave(student, interviewer)}>Save</Button>
+          <Button confirm onClick={()=>{
+            validate()
+          }}>Save</Button>
         </section>
       </section>
     </main>

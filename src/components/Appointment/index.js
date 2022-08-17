@@ -19,7 +19,7 @@ const EDIT = 'EDIT';
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 const Appointment = function(props) {
-  
+  console.log("form props" , props)
   const {bookInterview, id, cancelInterview, interview} = props;
   const {mode, transition, back} = useVisualMode(props.interview ? SHOW : EMPTY);
   const save = (name, interviewer) => {
@@ -76,6 +76,7 @@ const Appointment = function(props) {
       {mode === CREATE && <Form 
              name={props.name}
              value={props.value}
+            
              interviewers={props.interviewers}
              onCancel={() =>back()}
              onSave={save}
@@ -89,7 +90,9 @@ const Appointment = function(props) {
         interviewers={props.interviewers}
         onCancel={() =>back()}
         onSave={save}
-        interview={interview}
+        student={props.interview.student}
+        interviewer={props.interview.interviewer.id}
+        
       />}
       {mode === ERROR_DELETE && <Error onClose={onClose}/>}
       {mode === ERROR_SAVE && <Error onClose={onClose}/>}

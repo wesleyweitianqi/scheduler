@@ -5,8 +5,9 @@ import InterviewerListItem from "./InterviewerListItem";
 import PropTypes from "prop-types";
 
 const InterviewerList = function(props) { 
-  
-  const interviewerArray = Object.values(props.interviewers);
+  console.log("interviewlist", props)
+  const interviewerArray = props.interviewers;
+  console.log("^^^^^^^^^^^^^",interviewerArray)
   const allInterviewerList = interviewerArray.map(interviewer => {
     return  <InterviewerListItem 
               key={interviewer.id}
@@ -17,7 +18,7 @@ const InterviewerList = function(props) {
               setInterviewer={props.setInterviewer}
             /> 
   })
-  
+ 
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
