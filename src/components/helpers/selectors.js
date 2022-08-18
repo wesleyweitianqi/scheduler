@@ -27,6 +27,19 @@ const getInterviewersForDay = (state, day) => {
   const interviewersForDay = interviewersArr.map(id => state.interviewers[id])
   return interviewersForDay;
 };
+// function getInterviewersForDay(state, day) {
+
+//   const getInterviewersId = state.days.filter(d => d.name === day);
+//   const filteredInterviewer = [];
+
+//   if (getInterviewersId.length > 0) {
+//     getInterviewersId[0].interviewers.forEach((id) => {
+//       filteredInterviewer.push(state.interviewers[id]);
+//     });
+//   };
+
+//   return filteredInterviewer;
+// }
   
 module.exports = {getAppointmentsForDay, getInterview, getInterviewersForDay }
 
