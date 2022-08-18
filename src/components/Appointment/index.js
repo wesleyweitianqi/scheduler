@@ -21,8 +21,9 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 const Appointment = function(props) {
-  const {bookInterview, id, cancelInterview, interview} = props;
-  const {mode, transition, back} = useVisualMode(props.interview ? SHOW : EMPTY);
+  const {bookInterview, cancelInterview} = props;
+  const  interviewer  = props.interview
+  const {mode, transition, back} = useVisualMode(interviewer ? SHOW : EMPTY);
   const save = (name, interviewer) => {
     const interview = {
       student: name,

@@ -10,36 +10,45 @@ const getAppointmentsForDay = (state, day) => {
   return result;
 };
 
-const getInterview = (state, obj) => {
-  if (!obj) {
-    return null;
-  }
-  const id = obj.interviewer
-  return {
-    student: obj.student,
-    interviewer : state.interviewers[id]
-  } 
-};
+// const getInterview = (state, obj) => {
+//   if (!obj) {
+//     return null;
+//   }
+//   const id = obj.interviewer
+//   return {
+//     student: obj.student,
+//     interviewer : state.interviewers[id]
+//   } 
+// };
+function getInterview(state, interview) {
 
-const getInterviewersForDay = (state, day) => {
-  const expectedDay =state.days.filter(item => item.name === day) 
-  const interviewersArr = {...expectedDay[0]}.interviewers || [];
-  const interviewersForDay = interviewersArr.map(id => state.interviewers[id])
-  return interviewersForDay;
-};
-// function getInterviewersForDay(state, day) {
+  let filteredInterview = null
+  if (interview) {
+    const getInterviewer = state.interviewers[interview.interviewer];
+    filteredInterview = { student: interview.student, interviewer: getInterviewer };
+  };
+  return filteredInterview;
+}
 
-//   const getInterviewersId = state.days.filter(d => d.name === day);
-//   const filteredInterviewer = [];
+// const getInterviewersForDay = (state, day) => {
+//   const expectedDay =state.days.filter(item => item.name === day) 
+//   const interviewersArr = {...expectedDay[0]}.interviewers || [];
+//   const interviewersForDay = interviewersArr.map(id => state.interviewers[id])
+//   return interviewersForDay;
+// };
+function getInterviewersForDay(state, day) {
 
-//   if (getInterviewersId.length > 0) {
-//     getInterviewersId[0].interviewers.forEach((id) => {
-//       filteredInterviewer.push(state.interviewers[id]);
-//     });
-//   };
+  const getInterviewersId = state.days.filter(d => d.name === day);
+  const filteredInterviewer = [];
 
-//   return filteredInterviewer;
-// }
+  if (getInterviewersId.length > 0) {
+    getInterviewersId[0].interviewers.forEach((id) => {
+      filteredInterviewer.push(state.interviewers[id]);
+    });
+  };
+
+  return filteredInterviewer;
+}
   
 module.exports = {getAppointmentsForDay, getInterview, getInterviewersForDay }
 
