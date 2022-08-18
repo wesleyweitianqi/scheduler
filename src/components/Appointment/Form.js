@@ -15,8 +15,8 @@ const Form = (props) => {
     return
   }
   const cancel =() => {
-    reset();
-    return
+      reset()
+      props.onCancel()
   }
   function validate() {
     if (student === "") {
@@ -51,20 +51,12 @@ const Form = (props) => {
         setInterviewer={setInterviewer}
         value={interviewer}
         interviewer={props.interviewer}
-        
-        
-        
-        
       />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={() => {
-            props.onCancel()
-          }}>Cancel</Button>
-          <Button confirm onClick={()=>{
-            validate()
-          }}>Save</Button>
+          <Button danger onClick={cancel}>Cancel</Button>
+          <Button confirm onClick={validate}>Save</Button>
         </section>
       </section>
     </main>

@@ -8,6 +8,7 @@ import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
+import { resetWarningCache } from "prop-types";
 
 const EMPTY = 'EMPTY';
 const SHOW = 'SHOW';
@@ -51,7 +52,7 @@ const Appointment = function(props) {
   }
 
   const onCancel =() => {
-    transition(SHOW)
+    back()
   };
 
   const onEdit =() => {
@@ -63,7 +64,7 @@ const Appointment = function(props) {
   }
 
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && ( <Show
@@ -88,7 +89,7 @@ const Appointment = function(props) {
         name={props.name}
         value={props.value}
         interviewers={props.interviewers}
-        onCancel={() =>back()}
+        onCancel={onCancel}
         onSave={save}
         student={props.interview.student}
         interviewer={props.interview.interviewer.id}
