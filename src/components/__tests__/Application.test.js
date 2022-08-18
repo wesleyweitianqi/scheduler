@@ -56,18 +56,18 @@ describe("Application", ()=> {
     expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
 
-  // it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
-  //   const { container, debug } = render(<Application />);
-  //   await waitForElement(() => getByText(container, "Archie Cohen"));
-  //   const appointment = getAllByTestId(container, "appointment").find(
-  //     appointment => queryByText(appointment, "Archie Cohen")
-  //   );
-  //   fireEvent.click(queryByAltText(appointment, "Edit"));
-  //   expect(getByText(appointment, "Save")).toBeInTheDocument()
-  //   fireEvent.click(queryByText(appointment, "Save"));
-  //   const day = getAllByTestId(container, "day").find(day=>queryByText(day, "Monday"))
-  //   expect(getByText(day, "1 spot remaining")).toBeInTheDocument()
-  // })
+  it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
+    const { container, debug } = render(<Application />);
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+    const appointment = getAllByTestId(container, "appointment").find(
+      appointment => queryByText(appointment, "Archie Cohen")
+    );
+    fireEvent.click(queryByAltText(appointment, "Edit"));
+    expect(getByText(appointment, "Save")).toBeInTheDocument()
+    fireEvent.click(queryByText(appointment, "Save"));
+    const day = getAllByTestId(container, "day").find(day=>queryByText(day, "Monday"))
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument()
+  })
 
   it("shows the save error when failing to save an appointment", async() => {
     axios.put.mockRejectedValueOnce();
@@ -82,9 +82,7 @@ describe("Application", ()=> {
     expect(getByText(appointment, "Error")).toBeInTheDocument();
     fireEvent.click(queryByAltText(appointment, "Close"));
     expect(getByText(container, "Archie Cohen")).toBeInTheDocument();
-    const day = getAllByTestId(container, "day").find(day =>
-        queryByText(day, "Monday")
-      );
+    const day = getAllByTestId(container, "day").find(day =>queryByText(day, "Monday"));
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
   });
 
