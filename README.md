@@ -13,7 +13,7 @@ Interview Scheduler is a SPA (Single Page Application) for tracking students int
 * Database PostgreSQL
 
 ## Final product
-
+!["Scheduler-gif"](https://github.com/wesleyweitianqi/scheduler/blob/master/docs/Scheduler.gif?raw=true)
 !["Appointment-Day select in hover mode"](https://github.com/wesleyweitianqi/scheduler/blob/master/docs/appointment%20day%20select%20in%20hover.png?raw=true)
 !["Appointment delete and edit"](https://github.com/wesleyweitianqi/scheduler/blob/master/docs/appointment%20delete%20and%20edit.png?raw=true)
 !["Appointment book reminder"](https://github.com/wesleyweitianqi/scheduler/blob/master/docs/bookinterview%20reminder.png?raw=true)
