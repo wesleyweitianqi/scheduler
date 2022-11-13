@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getAppointmentsForDay } from "components/helpers/selectors";
+import { w3cwebsocket } from 'websocket';
 
+const ws = new w3cwebsocket('ws://192.168.0.64:8000')
 
 export default function useApplicationData () {
   const [state, setState] = useState({
@@ -31,6 +33,14 @@ export default function useApplicationData () {
   }
 
   useEffect(() => {
+    ws.onopen = () => {
+      console.log("websockets connected")
+    }
+    ws.onmessage =(message) => {
+      const dataFromServer = JSON.parse(message.data)
+      console.log("received data", dataFromServer)
+    }
+  
     Promise.all([
       axios.get("http://localhost:8001/api/days"),
       axios.get("http://localhost:8001/api/appointments"),
@@ -55,12 +65,13 @@ export default function useApplicationData () {
       ...state.appointments,
       [id]: appointment,
     };
-  
+    
     return axios
-      .put(`http://localhost:8001/api/appointments/${id}`, { interview })
-      .then(() => {
-        const days = updateSpots(state, appointments)
-        setState({ ...state, days, appointments});    
+    .put(`http://localhost:8001/api/appointments/${id}`, { interview })
+    .then(() => {
+      const days = updateSpots(state, appointments)
+      setState({ ...state, days, appointments});    
+    
       })
    
   };
